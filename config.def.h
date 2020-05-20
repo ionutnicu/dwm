@@ -20,10 +20,26 @@ static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
+
+/* solarized colors http://ethanschoonover.com/solarized */
+static const char s_base03[]        = "#002b36";
+static const char s_base02[]        = "#073642";
+static const char s_base01[]        = "#586e75";
+static const char s_base00[]        = "#657b83";
+static const char s_base0[]         = "#839496";
+static const char s_base1[]         = "#93a1a1";
+static const char s_base2[]         = "#eee8d5";
+static const char s_base3[]         = "#fdf6e3";
+
+
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	{ s_base0, s_base03, s_base2 },      /* SchemeNorm dark */
+	{ s_base0, s_base02, s_base2 },      /* SchemeSel dark */
+	{ s_base00, s_base3, s_base02 },     /* SchemeNorm light */
+	{ s_base00, s_base2, s_base02},      /* SchemeSel light */
+	{ col_gray3, col_gray1, col_gray2 }, /* SchemeNorm orig */
+	{ col_gray4, col_cyan,  col_cyan  }, /* SchemeSel orig */
 };
 
 /* tagging */
@@ -97,6 +113,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_t,      schemeToggle,   {0} },
+	{ MODKEY|ShiftMask,             XK_z,      schemeCycle,    {0} },
 	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
 	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
