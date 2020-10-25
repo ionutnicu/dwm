@@ -93,6 +93,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 #define TERM "urxvt"
+//#define TERM "st"
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { TERM, NULL };
 static const char *calcmd[] = { "zenity", "--calendar", NULL };
@@ -102,6 +103,8 @@ static const char *voldowncmd[] = { "pactl", "--", "set-sink-volume", "@DEFAULT_
 static const char *volmutecmd[] = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL};
 static const char *backlightupcmd[] = { "xbacklight", "-inc", "5", NULL};
 static const char *backlightdowncmd[] = { "xbacklight", "-dec", "5", NULL};
+static const char *extmononcmd[] = { "/home/nicu/bin/mon.sh", "on" };
+static const char *extmonoffcmd[] = { "/home/nicu/bin/mon.sh", "off" };
 
 #include "movestack.c"
 static Key keys[] = {
@@ -154,6 +157,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
 	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
+	{ MODKEY,			XK_n,	   spawn,	   {.v=extmononcmd } },
+	{ MODKEY|ShiftMask,		XK_n,	   spawn,	   {.v=extmonoffcmd } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
